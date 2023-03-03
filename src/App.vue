@@ -28,9 +28,7 @@
       </div>
 
       <v-spacer></v-spacer>
-      <head>
-        <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
-      </head>
+
       <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
         target="_blank"
@@ -42,19 +40,22 @@
     </v-app-bar>
 
     <v-main>
-      <HelloWorld/>
+      <hello-world/>
+      <app-login/>
     </v-main>
   </v-app>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld';
+import AppLogin from "@/components/AppLogin";
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+    'hello-world': HelloWorld,
+    'app-login': AppLogin
   },
 
   data: () => ({
