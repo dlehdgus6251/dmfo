@@ -8,15 +8,17 @@
             <v-card>
               <div class="pa-10">
                 <h1 style="text-align: center" class="mb-10">Login</h1>
-                <form>
+                <form v-on.prevent="submitForm">
                   <v-text-field
                       label="ID"
                       prepend-inner-icon="mdi-account"
+                      v-model="username"
                   ></v-text-field>
                   <v-text-field
                       prepend-inner-icon="mdi-lock"
                       type="password"
                       label="Password"
+                      v-model="password"
                   >
                   </v-text-field>
                   <v-btn
@@ -31,7 +33,7 @@
                     Login
                   </v-btn>
                   <v-btn
-                      @click="addUserShow"
+                      v-on:click="addUserShow"
                       color="blue lighten-1 text-capitalize"
                       depressed
                       large
@@ -51,14 +53,37 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
+      username:'',
+      password:''
     };
   },
   components: {},
   computed: {},
-  methods: {},
+  methods: {
+    submitForm: function(){
+      console.log(this.username+"        "+ this.password)
+      let url = 'https://jsonplaceholder.typicode.com/users'
+      let data ={
+        username: this.username,
+        password: this.password
+      }
+      axios.post(url, data)
+          .then(function (response){
+            console.log(response)
+          })
+          .catch(function (error){
+            console.log(error)
+          })
+
+    },
+    addUserShow:function (){
+
+    }
+  },
 };
 </script>
 

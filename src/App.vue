@@ -34,27 +34,27 @@
         target="_blank"
         text
       >
-        <span class="mr-2">Latest Release</span>
+        <span class="mr-2">로그인</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
 
     <v-main>
-      <hello-world/>
+<!--      <hello-world/>-->
       <app-login/>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+// import HelloWorld from './components/HelloWorld';
 import AppLogin from "@/components/AppLogin";
 
 export default {
   name: 'App',
 
   components: {
-    'hello-world': HelloWorld,
+    // 'hello-world': HelloWorld,
     'app-login': AppLogin
   },
 
