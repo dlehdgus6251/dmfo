@@ -8,7 +8,7 @@
             <v-card>
               <div class="pa-10">
                 <h1 style="text-align: center" class="mb-10">Login</h1>
-                <form v-on.prevent="submitForm">
+                <form v-on:submit.prevent="submitForm">
                   <v-text-field
                       label="ID"
                       prepend-inner-icon="mdi-account"
@@ -66,9 +66,9 @@ export default {
   methods: {
     submitForm: function(){
       console.log(this.username+"        "+ this.password)
-      let url = 'https://jsonplaceholder.typicode.com/users'
+      let url = '/login'
       let data ={
-        username: this.username,
+        userId: this.username,
         password: this.password
       }
       axios.post(url, data)
