@@ -73,10 +73,16 @@ export default {
       }
       axios.post(url, data)
           .then(function (response){
-            console.log(response)
+            console.log(response.data.token)
+            axios.create({
+              baseURL : process.env.VUE_APP_API_URL,
+              headers:{
+                Authorization: response.data.token,
+              }
+            })
           })
           .catch(function (error){
-            console.log(error)
+            alert(error.response.data)
           })
 
     },
