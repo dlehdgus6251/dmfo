@@ -32,16 +32,16 @@
                   >
                     Login
                   </v-btn>
-<!--                  <v-btn-->
-<!--                      v-on:click="addUserShow"-->
-<!--                      color="blue lighten-1 text-capitalize"-->
-<!--                      depressed-->
-<!--                      large-->
-<!--                      block-->
-<!--                      dark-->
-<!--                  >-->
-<!--                    Sign Up-->
-<!--                  </v-btn>-->
+                  <v-btn
+                      v-on:click="addUserShow"
+                      color="blue lighten-1 text-capitalize"
+                      depressed
+                      large
+                      block
+                      dark
+                  >
+                    Sign Up
+                  </v-btn>
                 </form>
               </div>
             </v-card>
@@ -66,17 +66,23 @@ export default {
   methods: {
     submitForm: function(){
       console.log(this.username+"        "+ this.password)
-      let url = 'http://localhost:8080/login'
+      let url = '/login'
       let data ={
-        username: this.username,
+        userId: this.username,
         password: this.password
       }
       axios.post(url, data)
           .then(function (response){
-            console.log(response)
+            console.log(response.data.token)
+            axios.create({
+              baseURL : process.env.VUE_APP_API_URL,
+              headers:{
+                Authorization: response.data.token,
+              }
+            })
           })
           .catch(function (error){
-            console.log(error)
+            alert(error.response.data)
           })
 
     },
