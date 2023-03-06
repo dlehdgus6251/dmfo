@@ -8,7 +8,7 @@
             <v-card>
               <div class="pa-10">
                 <h1 style="text-align: center" class="mb-10">Login</h1>
-                <form v-on.prevent="submitForm">
+                <form v-on:submit.prevent="submitForm">
                   <v-text-field
                       label="ID"
                       prepend-inner-icon="mdi-account"
@@ -32,16 +32,16 @@
                   >
                     Login
                   </v-btn>
-                  <v-btn
-                      v-on:click="addUserShow"
-                      color="blue lighten-1 text-capitalize"
-                      depressed
-                      large
-                      block
-                      dark
-                  >
-                    Sign Up
-                  </v-btn>
+<!--                  <v-btn-->
+<!--                      v-on:click="addUserShow"-->
+<!--                      color="blue lighten-1 text-capitalize"-->
+<!--                      depressed-->
+<!--                      large-->
+<!--                      block-->
+<!--                      dark-->
+<!--                  >-->
+<!--                    Sign Up-->
+<!--                  </v-btn>-->
                 </form>
               </div>
             </v-card>
@@ -66,7 +66,7 @@ export default {
   methods: {
     submitForm: function(){
       console.log(this.username+"        "+ this.password)
-      let url = 'https://jsonplaceholder.typicode.com/users'
+      let url = 'http://localhost:8080/login'
       let data ={
         username: this.username,
         password: this.password

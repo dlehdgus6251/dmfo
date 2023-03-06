@@ -40,14 +40,21 @@
     </v-app-bar>
 
     <v-main>
-<!--      <hello-world/>-->
       <app-login/>
+      <todo-header></todo-header>
+      <todo-input></todo-input>
+      <todo-list></todo-list>
+      <todo-footer></todo-footer>
     </v-main>
   </v-app>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld';
+import TodoHeader from "@/components/TodoHeader";
+import TodoInput from "@/components/TodoInput";
+import TodoList from "@/components/TodoList";
+import TodoFooter from "@/components/TodoFooter";
+
 import AppLogin from "@/components/AppLogin";
 
 export default {
@@ -55,7 +62,11 @@ export default {
 
   components: {
     // 'hello-world': HelloWorld,
-    'app-login': AppLogin
+    'app-login': AppLogin,
+    'todo-header' : TodoHeader,
+    'todo-input' : TodoInput,
+    'todo-list' : TodoList,
+    'todo-footer' : TodoFooter,
   },
 
   data: () => ({
@@ -63,3 +74,20 @@ export default {
   }),
 };
 </script>
+<style>
+body {
+  text-align: center;
+  background-color: #F6F6F6;
+}
+input {
+  border-style: groove;
+  width: 200px;
+}
+button {
+  border-style: groove;
+}
+.shadow {
+  box-shadow: 5px 10px rgba(0, 0, 0, 0.03);
+}
+
+</style>
