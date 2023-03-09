@@ -60,41 +60,39 @@ import TodoFooter from "@/components/TodoFooter";
 // import AppLogin from "@/components/AppLogin";
 export default {
 
-  data: function (){
+  data(){
     return {
       todoItems:[]
     }
   },
   methods:{
-    addOneItem: function (todoItem) {
-      const obj = {completed: false, item: todoItem}
+    addOneItem(todoItem) {
+      const obj = {completed: false, item: todoItem};
       localStorage.setItem(todoItem, JSON.stringify(obj));
       this.todoItems.push(obj);
     },
-    removeItem: function (todoItem, i) {
-      localStorage.removeItem(todoItem.item)
-      this.todoItems.splice(i,1)
+    removeItem(todoItem, i) {
+      localStorage.removeItem(todoItem.item);
+      this.todoItems.splice(i,1);
     },
-    toggleOneItem: function (todoItem) {
-      todoItem.completed = !todoItem.completed;
-      localStorage.removeItem(todoItem.item)
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
+    toggleOneItem(todoItem, i) {
+      this.todoItems[i].completed = !this.todoItems[i].completed;
+      localStorage.removeItem(todoItem.item);
+      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
     },
   },
   created() {
     if (localStorage.length > 0) {
       for (let i = 0; i < localStorage.length; i++) {
-        this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))))
+        this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
       }
     }
   },
   components: {
-    // 'hello-world': HelloWorld,
-    // 'app-login': AppLogin,
-    'todo-header' : TodoHeader,
-    'todo-input' : TodoInput,
-    'todo-list' : TodoList,
-    'todo-footer' : TodoFooter,
+    TodoHeader,
+    TodoInput,
+    TodoList,
+    TodoFooter,
   },
 };
 </script>

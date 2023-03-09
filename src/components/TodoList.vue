@@ -1,40 +1,35 @@
 <template>
 <div>
-  <ul>
-    <li v-for="(todoItem, i) in propsdata" v-bind:key="todoItem.item" class="shadow">
-      <i class="checkBtn fas fa-check" v-bind:class="{checkBtnCompleted: todoItem.completed}" v-on:click="toggleComplete(todoItem, i)"></i>
-      <span v-bind:class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>
-      <span class="removeBtn" v-on:click="removeTodo(todoItem, i)">
-        <i class="fa-solid fa-trash-can" />
-      </span>
 
-    </li>
+    <transition-group name="fade" tag="ul" class="container fade">
+      <li v-for="(todoItem, i) in propsdata" v-bind:key="todoItem.item" class="shadow">
+        <i class="checkBtn fas fa-check" v-bind:class="{checkBtnCompleted: todoItem.completed}" v-on:click="toggleComplete(todoItem, i)"></i>
+        <span v-bind:class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>
+        <span class="removeBtn" v-on:click="removeTodo(todoItem, i)">
+          <i class="fa-solid fa-trash-can" />
+        </span>
+      </li>
+    </transition-group>
 
-  </ul>
 </div>
 </template>
 
 <script>
 export default {
   props:['propsdata'],
-  data: function (){
+  data(){
     return{
       todoItems : []
     }
   },
   methods:{
-    removeTodo: function (todoItem, i) {
+    removeTodo(todoItem, i) {
       this.$emit('removeTodo', todoItem, i)
     },
-    toggleComplete: function (todoItem){
-      this.$emit('toggleItem', todoItem);
+    toggleComplete(todoItem, i){
+      this.$emit('toggleItem', todoItem, i);
     }
   },
-
-
-
-
-
 }
 </script>
 
@@ -70,5 +65,38 @@ li {
 .removeBtn {
   margin-left: auto;
   color: #de4343;
+}
+/*list transitions*/
+.container {
+  position: relative;
+  padding: 0;
+}
+
+.item {
+  width: 100%;
+  height: 30px;
+  background-color: #f3f3f3;
+  border: 1px solid #666;
+  box-sizing: border-box;
+}
+
+/* 1. declare transition */
+.fade-move,
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+/* 2. declare enter from and leave to state */
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: scaleY(0.01) translate(30px, 0);
+}
+
+/* 3. ensure leaving items are taken out of layout flow so that moving
+      animations can be calculated correctly. */
+.fade-leave-active {
+  position: absolute;
 }
 </style>
