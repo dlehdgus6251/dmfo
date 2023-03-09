@@ -45,8 +45,8 @@
 <!--  </v-app>-->
   <div>
     <todo-header></todo-header>
-    <todo-input v-on:addTodoItem="addOneItem"></todo-input>
-    <todo-list v-bind:propsdata="todoItems" v-on:removeTodo="removeItem" v-on:toggleItem="toggleOneItem"></todo-list>
+    <todo-input></todo-input>
+    <todo-list></todo-list>
     <todo-footer></todo-footer>
   </div>
 </template>
@@ -59,35 +59,6 @@ import TodoFooter from "@/components/TodoFooter";
 
 // import AppLogin from "@/components/AppLogin";
 export default {
-
-  data(){
-    return {
-      todoItems:[]
-    }
-  },
-  methods:{
-    addOneItem(todoItem) {
-      const obj = {completed: false, item: todoItem};
-      localStorage.setItem(todoItem, JSON.stringify(obj));
-      this.todoItems.push(obj);
-    },
-    removeItem(todoItem, i) {
-      localStorage.removeItem(todoItem.item);
-      this.todoItems.splice(i,1);
-    },
-    toggleOneItem(todoItem, i) {
-      this.todoItems[i].completed = !this.todoItems[i].completed;
-      localStorage.removeItem(todoItem.item);
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
-    },
-  },
-  created() {
-    if (localStorage.length > 0) {
-      for (let i = 0; i < localStorage.length; i++) {
-        this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-      }
-    }
-  },
   components: {
     TodoHeader,
     TodoInput,
