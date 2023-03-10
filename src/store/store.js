@@ -11,6 +11,7 @@ const storage = {
                 arr.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
             }
         }
+        return arr;
     }
 }
 export const store = new Vuex.Store({
